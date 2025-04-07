@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Peanut Brothers Foxtrot Locations Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <style>
+        html, body, #map {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+    var map = L.map('map').setView([41.8781, -87.6298], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var locations = [
+        {name: "Gold Coast", address: "23 West Maple St.", lat: 41.9022, lng: -87.6296},
+        {name: "Old Town", address: "1562 North Wells St.", lat: 41.9117, lng: -87.6341},
+        {name: "Wicker Park", address: "1722 West Division St.", lat: 41.9031, lng: -87.6716},
+        {name: "Fulton Market", address: "171 North Green St.", lat: 41.8841, lng: -87.6489},
+        {name: "Hubbard", address: "401 N Wells St.", lat: 41.8883, lng: -87.6336},
+        {name: "Milwaukee & Damen", address: "1576 North Milwaukee Ave.", lat: 41.9098, lng: -87.6778}
+    ];
+
+    locations.forEach(function(loc) {
+        L.marker([loc.lat, loc.lng])
+            .addTo(map)
+            .bindPopup("<b>" + loc.name + "</b><br>" + loc.address);
+    });
+</script>
+</body>
+</html>
